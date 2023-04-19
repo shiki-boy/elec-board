@@ -1,0 +1,57 @@
+version: '3.3'
+
+volumes:
+  postgres_data: {}
+  rfs_data: {}
+
+services:
+  postgres:
+    image: 'postgres:14-alpine'
+    volumes:
+      - './volumes/postgres:/var/lib/postgresql/data'
+    env_file: .env
+
+  redis:
+    ports:
+      - "6379:6379"
+    image: 'redis:alpine'
+
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: ./frontend/Dockerfile
+  #   environment:
+  #     # enables hot reloading
+  #     - CHOKIDAR_USEPOLLING=true
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   command: "sh -c 'pnpm i && pnpm run build'"
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - '8000:8000'
+    depends_on:
+      - redis
+      - postgres
+      # - mailhog
+    volumes:
+      - .:/app
+    command: /start.sh
+    entrypoint: /entrypoint.sh
+    restart: on-failure
+    env_file: .env
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - '8025:8025'
+    logging:
+      driver: none
+
+networks:
+  rfs-net:
+    driver: bridge

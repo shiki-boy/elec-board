@@ -1,0 +1,18 @@
+.env
+.vscode
+
+volumes
+
+backend/static/**
+**/__pycache__/**
+*~
+*pyc
+.pnpm-debug.log
+
+backend/staticfiles/*
+# !backend/staticfiles/.gitkeep 
+
+backend/static/*
+!backend/static/.gitkeep 
+
+.pnpm-store

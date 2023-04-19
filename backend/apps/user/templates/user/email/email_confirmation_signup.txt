@@ -1,0 +1,6 @@
+Dear {{user}},
+
+Thank you for signing up for EB!
+To get started, please confirm your email address by clicking the link below:
+
+{{activate_url}}
