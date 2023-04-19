@@ -1,7 +1,7 @@
 from django.urls import include, path, re_path
 from rest_framework.routers import DefaultRouter
 from apps.user.views import (
-    UserInfoView, EbVerifyEmailView
+    UserInfoView, EbRegisterView, EbVerifyEmailView
 )
 
 router = DefaultRouter()
@@ -12,6 +12,8 @@ app_name = 'apps.auth'
 
 urlpatterns += [
     path(f"", include("dj_rest_auth.urls")),
+
+    path('register/', EbRegisterView.as_view(), name='register'),
 
     re_path(r'registration/account-confirm-email/(?P<key>[-:\w]+)',
             EbVerifyEmailView.as_view(), name='account_confirm_email'),

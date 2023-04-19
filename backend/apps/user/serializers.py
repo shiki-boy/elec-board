@@ -1,28 +1,29 @@
 from dj_rest_auth.serializers import PasswordChangeSerializer
-from django.conf import settings
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import Group
-from django.core.management import call_command
-from django.db import transaction
+
 from rest_framework import serializers
+
+from django.conf import settings
+from django.contrib.auth.models import Group
+from django.db import transaction
+from django.conf import settings
 
 from apps.user.models import User
 from apps.util.utils import send_email
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    invite_code = serializers.CharField(write_only=True)
-
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name',
-                  'phone', 'password', ]
+                  'password', ]
 
     @transaction.atomic
     def create(self, validated_data):
         password = validated_data.pop('password')
         user = super().create(validated_data)
         user.set_password(password)
+        reviewer_group = Group.objects.get(name=settings.REVIEWER_USER_GROUP)
+        user.groups.add(reviewer_group)
         user.save()
         return user
 

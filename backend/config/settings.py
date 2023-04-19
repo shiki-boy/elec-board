@@ -47,6 +47,7 @@ SHARED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.postgres",
+    "apps.application",
     "apps.user",
     "apps.util",
 ]
@@ -80,19 +81,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
-REST_USE_JWT = True
-# JWT_AUTH_COOKIE = 'accessToken'
-
 # DJANGO REST FRAMEWORK
 # ------------------------------------------------------------------------------
 REST_FRAMEWORK = {
     "UPLOADED_FILES_USE_URL": False,
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        "rest_framework.authentication.TokenAuthentication",
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication'
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+        # "rest_framework.authentication.TokenAuthentication",
+        # "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [],
@@ -115,6 +110,12 @@ REST_FRAMEWORK = {
     # 'EXCEPTION_HANDLER': 'apps.util.permissions.custom_exception_handler'
 }
 
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "access",
+    "JWT_AUTH_REFRESH_COOKIE": "refresh",
+    "JWT_AUTH_HTTPONLY": False,
+}
 
 TEMPLATES = [
     {
@@ -181,7 +182,8 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_ADAPTER = "apps.user.adapter.AccountAdapter"
 
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+APPLICANT_USER_GROUP = "Applicant"
+REVIEWER_USER_GROUP = "Reviewer"
 
 
 # Internationalization
