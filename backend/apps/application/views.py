@@ -8,6 +8,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from django_filters.rest_framework import DjangoFilterBackend
+from django.db.models.aggregates import Count
 
 from apps.util.permissions import IsReviewer
 from apps.user.models import Applicant, Reviewer
@@ -45,7 +46,7 @@ class ApplicationViewset(
         'category': ['exact'],
         'created': ['gte', 'lte'],
     }
-    queryset = Application.objects.all().order_by("-modified")
+    queryset = Application.objects.all()
     lookup_field = "uid"
     lookup_url_kwarg = "uid"
     lookup_value_regex = "[0-9a-f-]{36}"
@@ -81,6 +82,13 @@ class ApplicationViewset(
             results["total_count"] = qs.filter(created__year=year).count()
 
         return Response({"results": results})
+
+    @action(detail=False, methods=["GET"], url_path="stats/status-counts", url_name="status-counts-stats")
+    def status_counts(self, request, *args, **kwargs):
+        year = request.query_params.get("year", datetime.now().year)
+        qs = self.get_queryset().filter(created__year=year)
+        data = qs.values('status').annotate(status_count=Count('status'))
+        return Response(data)
 
     @action(
         detail=False, methods=["POST"], url_path="bulk-import", url_name="bulk-import"

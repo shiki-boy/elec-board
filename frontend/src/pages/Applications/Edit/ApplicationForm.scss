@@ -1,12 +1,13 @@
 @use '@/theme/variables.scss' as *;
- 
+
 .application-form {
     padding: $spacing-2;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: $spacing-2;
-}
 
-.buttons {
-    margin-left: $spacing-2;
+
+    &~.buttons {
+        margin-left: $spacing-2;
+    }
 }

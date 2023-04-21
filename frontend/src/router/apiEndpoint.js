@@ -7,7 +7,9 @@ const loginURL = `${ base }/auth/login`,
       refreshTokenURL = `${ base }/auth/token/refresh/`,
 
       listApplicationsURL = `${ base }/application`,
-      getApplicationURL = ( uid ) => `${ base }/application/${ uid }`
+      getApplicationURL = ( uid ) => `${ base }/application/${ uid }`,
+
+      statusCountsURL = `${ base }/application/stats/status-counts`
 
 
 export {
@@ -18,4 +20,6 @@ export {
 
   listApplicationsURL,
   getApplicationURL,
+
+  statusCountsURL,
 }

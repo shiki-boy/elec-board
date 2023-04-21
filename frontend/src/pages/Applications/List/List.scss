@@ -6,4 +6,9 @@
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: $spacing-2;
     }
+
+    .subtext{
+        font-size: 12px;
+        margin: 0;
+    }
 }

@@ -151,6 +151,11 @@ const List = () => {
         </FormLabel>
       </div>
 
+      <h5>Connection Applications:
+        <br />
+        <span className='subtext'>*Double click to view application</span>
+      </h5>
+
       <DataTable
         endpoint={ listApplicationsURL }
         columns={ columns }

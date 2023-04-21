@@ -58,7 +58,6 @@
     th {
       font-weight: bold;
       font-size: 1.125rem;
-      // background-color: $amh-light-blue;
 
       svg {
         display: none;
@@ -93,6 +92,11 @@
       margin: $spacing-1 0;
       padding: $spacing-1 0;
       height: 50px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(192, 185, 237, 0.158);
+      }
     }
   }
 

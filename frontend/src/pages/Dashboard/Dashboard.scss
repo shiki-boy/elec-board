@@ -1,2 +1,26 @@
 @use '@/theme/variables.scss' as *;
 @use '@/theme/transitions.scss' as *;
+
+.dashboard-page {
+    .subtext{
+        font-size: 12px;
+    }
+
+    .filters {
+        & > * {
+            max-width: 240px;
+        }
+    }
+
+    .chart {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        .labels {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-1;
+        }
+    }
+}

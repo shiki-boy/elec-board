@@ -1,0 +1,7 @@
+@use '@/theme/variables.scss' as *;
+
+.view-application-page{
+    .heading {
+        margin-left: $spacing-2;
+    }
+}
