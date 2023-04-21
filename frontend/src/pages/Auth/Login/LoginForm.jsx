@@ -31,6 +31,15 @@ const LoginForm = ( { goToSignUp, goToForgotPassword, isLoading } ) => {
       />
 
       <Button
+        title='Forgot Password?'
+        color='tertiary'
+        type='button'
+        onClick={ () => {
+          goToForgotPassword()
+        } }
+      />
+
+      <Button
         title='Create an account'
         color='tertiary'
         type='button'

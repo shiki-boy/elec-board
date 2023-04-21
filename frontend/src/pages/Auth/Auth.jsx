@@ -4,6 +4,10 @@ import { camelCase, kebabCase, upperFirst } from 'lodash'
 
 import Login from './Login'
 import Signup from './Signup'
+import ForgotPassword from './ForgotPassword'
+import ForgotPasswordSuccess from './ForgotPasswordSuccess'
+import ChangePassword from './ChangePassword'
+import ChangePasswordSuccess from './ChangePasswordSuccess'
 
 const Auth = ( { defaultPage } ) => {
   const navigate = useNavigate()
@@ -24,6 +28,28 @@ const Auth = ( { defaultPage } ) => {
   const goToLogin = () => navigate( '/login' )
 
   const getComponent = {
+    ChangePassword() {
+      return (
+        <ChangePassword
+          goToSuccessPage={ () => setCurrentPage( 'ChangePasswordSuccess' ) }
+          goToLogin={ goToLogin }
+        />
+      )
+    },
+    ChangePasswordSuccess() {
+      return <ChangePasswordSuccess goToLogin={ goToLogin } />
+    },
+    ForgotPassword() {
+      return (
+        <ForgotPassword
+          goToSuccessPage={ () => setCurrentPage( 'ForgotPasswordSuccess' ) }
+          goToLogin={ goToLogin }
+        />
+      )
+    },
+    ForgotPasswordSuccess() {
+      return <ForgotPasswordSuccess goToLogin={ goToLogin } />
+    },
     Login() {
       return (
         <Login

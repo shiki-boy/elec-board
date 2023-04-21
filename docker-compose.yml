@@ -37,17 +37,17 @@ services:
   #   networks:
   #     - eb-net
     
-  # frontend:
-  #   build:
-  #     context: .
-  #     dockerfile: ./frontend/Dockerfile
-  #   environment:
-  #     # enables hot reloading
-  #     - CHOKIDAR_USEPOLLING=true
-  #   volumes:
-  #     - ./frontend:/app
-  #     - /app/node_modules
-  #   command: "sh -c 'pnpm i && pnpm run build'"
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    environment:
+      # enables hot reloading
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: "sh -c 'pnpm i && pnpm run build'"
 
   backend:
     build:
@@ -58,7 +58,7 @@ services:
     depends_on:
       - redis
       - postgres
-      # - mailhog
+      - frontend
     volumes:
       - .:/app
     command: /start.sh

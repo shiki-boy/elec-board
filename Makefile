@@ -33,15 +33,3 @@ create_superuser:
 
 test:
 	@docker-compose exec backend bash -c "python manage.py test"
-
-run_dev:
-	sudo docker-compose -f docker-compose-dev.yml up -d
-
-dev_logs_backend:
-	sudo docker-compose -f docker-compose-dev.yml logs -f backend
-
-dev_bash:
-	sudo docker-compose -f docker-compose-dev.yml exec backend bash
-
-dev_shell:
-	sudo docker-compose -f docker-compose-dev.yml exec backend shell

@@ -37,6 +37,7 @@ urlpatterns = [
         TemplateView.as_view(template_name="index.html"),
         name="password_reset_confirm",
     ),
+
     # catch all the rest
-    # url(r"^.*$", TemplateView.as_view(template_name="index.html")),
+    re_path(r"^.*$", TemplateView.as_view(template_name="index.html")),
 ]

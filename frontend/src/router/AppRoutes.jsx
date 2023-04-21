@@ -58,6 +58,14 @@ const AppRoutes = () => {
           element: <Auth defaultPage='Signup' />,
           path: '/signup',
         },
+        {
+          element: <Auth defaultPage='ForgotPassword' />,
+          path: '/forgot-password',
+        },
+        {
+          element: <Auth defaultPage='ChangePassword' />,
+          path: '/change-password/:uid/:token',
+        },
       ],
       element: <AuthLayout />,
     },

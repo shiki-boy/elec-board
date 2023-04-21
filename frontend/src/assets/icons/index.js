@@ -1,10 +1,6 @@
 import AddIcon from './add.svg?component'
 import ArrowDownIcon from './arrow-down.svg?component'
 import ArrowUpIcon from './arrow-up.svg?component'
-import BellIcon from './bell.svg?component'
-import CalendarIcon from './calendar.svg?component'
-import CheckFilledIcon from './checkFilled.svg?component'
-import CheckIcon from './check.svg?component'
 import CloseIcon from './close.svg?component'
 import ClosesearchIcon from './close-search.svg?component'
 import CommentboxIcon from './comment-box.svg?component'
@@ -26,7 +22,6 @@ import NextIcon from './next.svg?component'
 import NextPageIcon from './next-page-arrow.svg?component'
 import PreviousPageIcon from './previous-page-arrow.svg?component'
 import SearchIcon from './search.svg?component'
-import SettingsIcon from './settings.svg?component'
 import ShowIcon from './show.svg?component'
 import UpdateIcon from './update.svg?component'
 import UserIcon from './user.svg?component'
@@ -35,10 +30,6 @@ export {
   AddIcon,
   ArrowDownIcon,
   ArrowUpIcon,
-  BellIcon,
-  CalendarIcon,
-  CheckFilledIcon,
-  CheckIcon,
   CloseIcon,
   ClosesearchIcon,
   CreditCardIcon,
@@ -60,7 +51,6 @@ export {
   NextPageIcon,
   PreviousPageIcon,
   SearchIcon,
-  SettingsIcon,
   ShowIcon,
   UpdateIcon,
   UserIcon,

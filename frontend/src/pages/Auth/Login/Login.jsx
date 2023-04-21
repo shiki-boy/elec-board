@@ -6,7 +6,7 @@ import { loginURL } from '@/router/apiEndpoint'
 
 import LoginForm from './LoginForm'
 
-const Login = ( { goToSuccessPage, goToSignUp } ) => {
+const Login = ( { goToSuccessPage, goToSignUp, goToForgotPassword } ) => {
 
   const { setUserData } = useContext( AuthContext )
 
@@ -28,6 +28,7 @@ const Login = ( { goToSuccessPage, goToSignUp } ) => {
           FormBody={ ( props ) =>
             LoginForm( {
               ...props,
+              goToForgotPassword,
               goToSignUp,
             } )
           }

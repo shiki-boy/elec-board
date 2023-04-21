@@ -122,7 +122,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             str(BASE_DIR("templates")),
-            # os.path.join(FRONTEND_DIR, 'dist'),
+            os.path.join(FRONTEND_DIR, 'dist'),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -218,7 +218,7 @@ STATICFILES_DIRS = [
 ]
 if DEBUG:
     STATICFILES_DIRS += [
-        # os.path.join(FRONTEND_DIR, "dist/static"),
+        os.path.join(FRONTEND_DIR, "dist/static"),
     ]
 # MEDIA CONFIGURATION
 # ------------------------------------------------------------------------------
