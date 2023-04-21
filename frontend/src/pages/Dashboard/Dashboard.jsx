@@ -34,7 +34,7 @@ const Dashboard = () => {
         Applications created in the year: {year.getFullYear()}
         <br />
         <span className='subtext'>
-          *The counts shown are only from your assgined applications
+          *The counts shown are only from applications assgined to you
         </span>
       </h5>
 
