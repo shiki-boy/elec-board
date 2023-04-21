@@ -1,0 +1,38 @@
+@import '@/theme/variables.scss', '@/theme/transitions.scss';
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  min-width: $sidebar-width;
+  background-color: $sidebar-bg;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-medium;
+
+  .logo {
+    padding: $spacing-2;
+  }
+
+  .sidebar-nav-link {
+    color: #bebebe;
+    text-decoration: none;
+    margin: $spacing-1;
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-1 $spacing-2;
+    border-radius: 5px;
+    transition: all $transition-short;
+
+    &:not(.active) svg {
+      filter: invert(1);
+      opacity: 0.7;
+    }
+
+    &.active {
+      background-color: white;
+      color: #293042;
+    }
+  }
+}

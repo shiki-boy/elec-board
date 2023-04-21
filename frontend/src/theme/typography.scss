@@ -1,0 +1,266 @@
+@import './variables.scss', './transitions.scss';
+
+// ====
+
+* {
+  color: $text-color;
+}
+
+h1 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.25rem;
+  line-height: 51px;
+}
+
+h2 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 43px;
+}
+
+h3 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 35px;
+}
+
+h4 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 31px;
+}
+
+h5 {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 29px;
+}
+
+// TODO: rather than :not, add a special class on app's Button
+button:not(.custom):not(.react-datepicker__navigation):not(.react-datepicker__close-icon),
+a.link-btn {
+  padding: 12px $spacing-2;
+  margin: $spacing-2 0;
+  color: $white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all $transition-short;
+  font-weight: 600;
+  border-radius: 5px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+
+  &.primary {
+    background-color: $primary;
+  }
+  &.primary:hover {
+    background-color: $button-primary-hover;
+  }
+  &.primary:active {
+    background-color: $button-primary-active;
+  }
+
+  &.danger {
+    background-color: $danger;
+  }
+  &.danger:hover {
+    background-color: $button-danger-hover;
+  }
+  &.danger:active {
+    background-color: $button-danger-active;
+  }
+
+  &.secondary {
+    background-color: $white;
+    color: $primary;
+    border: 1px solid $primary;
+  }
+  &.secondary:hover {
+    background-color: $button-secondary-hover;
+  }
+  &.secondary:active {
+    background-color: $button-secondary-active;
+  }
+
+  &.secondary.danger {
+    background-color: $white;
+    color: $danger;
+    border: 1px solid $danger;
+  }
+  &.secondary.danger:hover {
+    background-color: $button-secondary-danger-hover;
+  }
+  &.secondary.danger:active {
+    background-color: $button-secondary-danger-active;
+  }
+
+  &.tertiary {
+    background-color: transparent;
+    color: $primary;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+  }
+  &.tertiary:active {
+    color: $button-tertiary-active;
+  }
+
+  &.success {
+    background-color: $success;
+  }
+  &.success:hover {
+    background-color: $button-success-hover;
+  }
+  &.success:active {
+    background-color: $button-success-active;
+  }
+
+  &:disabled:not(.loading) {
+    color: $grey-4;
+    background-color: $grey-2;
+    cursor: not-allowed;
+    border: none;
+  }
+
+  &.loading {
+    cursor: progress;
+    animation: btnShimmer 3s infinite;
+    background: linear-gradient(to right, $grey-2 4%, $grey-1 25%, $grey-2 36%);
+    background-size: 1000px 100%;
+  }
+
+  & > svg {
+    margin-right: $spacing-1;
+    vertical-align: middle;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.spaced {
+    margin-right: $spacing-2;
+  }
+
+  &.icon-btn {
+    // FIXME: maybe handle centering better
+    margin: 0;
+    padding: 13px 0px;
+    padding-left: 2px;
+    text-align: center;
+
+    & > svg {
+      margin: 0;
+    }
+  }
+
+  &.link-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+}
+
+svg {
+  transition: transform $transition-short;
+
+  &.primary {
+    fill: $primary;
+  }
+  &.secondary {
+    fill: $secondary;
+  }
+  &.light {
+    fill: white;
+  }
+  &.dark {
+    fill: black;
+  }
+  &.subtle {
+    fill: $grey-4;
+  }
+  &.danger {
+    fill: $danger;
+  }
+
+  &.sm {
+    height: 12px;
+    width: 12px;
+  }
+  &.md {
+    height: 14px;
+    width: 14px;
+  }
+  &.lg {
+    height: 16px;
+    width: 16px;
+  }
+  &.xl {
+    height: 18px;
+    width: 18px;
+  }
+
+  &.rotate {
+    transform: rotate(180deg);
+  }
+  &.pointer {
+    cursor: pointer;
+  }
+}
+
+.link {
+  text-decoration: none;
+  text-underline-offset: 2.5px;
+  color: $primary;
+  font-weight: 600;
+  cursor: pointer;
+  
+  &.danger {
+    color: $danger;
+    font-weight: bold;
+  }
+  &:hover {
+    text-decoration: underline 1.5px;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+@keyframes btnShimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+p,
+span {
+  &.subtle {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  &.empahsis {
+    font-weight: 400;
+  }
+  &.error {
+    color: $danger;
+  }
+}

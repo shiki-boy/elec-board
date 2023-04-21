@@ -1,0 +1,187 @@
+@import '../../theme/variables.scss', '../../theme/transitions.scss',
+  '../../theme/mixins.scss';
+
+.data-table-container {
+  border-radius: $border-radius;
+  // border: 1px solid $grey-1;
+  background-color: #f2f4ff;
+  padding: 0 $spacing-1 $spacing-2;
+
+  td {
+    color: $text-color;
+    // border-width: 0 1px;
+    // border-style: solid;
+    // border-color: $grey-1;
+  }
+
+  &.overflow-table {
+    overflow: auto;
+
+    // FIXME
+    width: calc(100vw - 340px);
+
+    // @include onBiggerThanTablet {
+    // }
+    // @include onTabletAndLower {
+    //   width: calc(100vw - $spacing-1 * 2);
+    // }
+
+    table.data-table {
+      thead > tr {
+        width: max-content;
+
+        th {
+          width: 250px;
+        }
+      }
+
+      thead {
+        position: sticky;
+        top: 0;
+      }
+    }
+
+    .table-pagination-container {
+      position: sticky;
+      left: 0;
+    }
+  }
+}
+
+.data-table {
+  border-collapse: collapse;
+  border-radius: $border-radius;
+  flex: 1;
+  width: 100%;
+
+  thead {
+    th {
+      font-weight: bold;
+      font-size: 1.125rem;
+      // background-color: $amh-light-blue;
+
+      svg {
+        display: none;
+        margin-left: 10px;
+        transition: transform $transition-short;
+        vertical-align: middle;
+      }
+
+      svg.desc {
+        transform: rotate(180deg);
+      }
+      svg.show {
+        display: inline-block;
+      }
+    }
+
+    tr {
+      margin: $spacing-1 0;
+    }
+
+    tr:hover {
+      background-color: transparent;
+    }
+  }
+
+  tbody {
+    tr {
+      box-shadow: 0px 3px 13px rgba(43, 46, 69, 0.22);
+      background-color: white;
+      border-radius: 10px;
+      margin: $spacing-1 0;
+      padding: $spacing-1 0;
+      height: 50px;
+    }
+  }
+
+  tr {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  // tr:nth-child(even) {
+  //   background-color: $table-row-bg;
+  // }
+
+  td,
+  th {
+    padding: $spacing-1 $spacing-2;
+    text-align: left;
+  }
+
+  td {
+    word-break: break-word;
+  }
+
+  p.no-data {
+    text-align: center;
+    font-weight: 600;
+  }
+
+  // TODO: the class below is used for loading placeholder, needs a little improvement
+  .shimmer {
+    background-color: $grey-1;
+    content: '';
+    height: 4px;
+    margin: 6px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    &::after {
+      animation: shimmer 3000ms ease-in-out infinite;
+      background-color: lightblue;
+      content: '';
+      height: 100%;
+      left: 0;
+      opacity: 0.5;
+      position: absolute;
+      width: 10%;
+      z-index: $z-index-lowest;
+    }
+  }
+
+  .checkbox-td,
+  .radiobutton-td {
+    width: 35px;
+    border: none;
+    padding-left: $spacing-1;
+    padding-right: 0;
+
+    & ~ td {
+      border-left: none;
+    }
+  }
+
+  .radiobutton-td {
+    & > .radio-btn-container {
+      margin: 0;
+      top: -12px;
+    }
+  }
+
+  .checkbox-th {
+    width: 30px;
+    padding: 0;
+
+    & ~ th {
+      padding-right: 40px;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: 0px;
+  }
+
+  50% {
+    left: calc(100% + 15px);
+  }
+
+  100% {
+    left: 0px;
+  }
+}

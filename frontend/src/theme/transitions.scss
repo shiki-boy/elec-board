@@ -1,0 +1,97 @@
+$transition-shorter: 0.2s;
+$transition-short: 0.3s;
+$transition-long: 0.7s;
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+.toast-alert-enter {
+  opacity: 0;
+  transform: translateY(30%);
+}
+.toast-alert-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 300ms;
+}
+.toast-alert-exit {
+  opacity: 1;
+  background-color: white;
+}
+.toast-alert-exit-active {
+  opacity: 0;
+  background-color: transparent;
+  transform: scale(0.2);
+  transition: all 300ms;
+}
+
+.slide-down {
+  &-enter,
+  &-appear {
+    opacity: 0;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: all $transition-short $ease-smooth;
+  }
+
+  &-enter-done,
+  &-appear-done {
+    opacity: 1;
+    transform-origin: top;
+    transform: scaleY(1);
+    transition: all $transition-short $ease-smooth;
+  }
+
+  &-exit-active {
+    opacity: 1;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: all $transition-shorter $ease-smooth;
+  }
+}
+
+.zoom {
+  &-enter {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity $transition-short, transform $transition-short;
+  }
+
+  &-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  &-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity $transition-short, transform $transition-short;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pageTransition {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.page-enter-transition {
+  animation: pageTransition 1 1s;
+}

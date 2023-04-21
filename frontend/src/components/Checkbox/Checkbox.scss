@@ -1,0 +1,12 @@
+@import '../../theme/variables.scss';
+
+.checkbox-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: $spacing-2 0;
+
+  &.small {
+    transform: scale(0.8);
+  }
+}

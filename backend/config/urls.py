@@ -21,19 +21,22 @@ from apps.user.views import EbVerifyEmailView
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
-    path('api/auth/', include(('apps.user.urls', 'user'), namespace='auth-api')),
-    
-    re_path(r'api/auth/registration/account-confirm-email/',
-            EbVerifyEmailView.as_view(), name='account_email_verification_sent'),
-
+    path("admin/", admin.site.urls),
+    path("api/auth/", include(("apps.user.urls", "user"), namespace="auth-api")),
+    path(
+        "api/application/",
+        include(("apps.application.urls", "application"), namespace="application-api"),
+    ),
+    re_path(
+        r"api/auth/registration/account-confirm-email/",
+        EbVerifyEmailView.as_view(),
+        name="account_email_verification_sent",
+    ),
     re_path(
         r"^change-password/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$",
         TemplateView.as_view(template_name="index.html"),
         name="password_reset_confirm",
     ),
-
     # catch all the rest
     # url(r"^.*$", TemplateView.as_view(template_name="index.html")),
 ]

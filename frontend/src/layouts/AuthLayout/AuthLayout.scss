@@ -1,0 +1,58 @@
+@import '@/theme/variables.scss', '@/theme/transitions.scss';
+
+.auth-layout {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('@/assets/images/auth-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -50vh;
+  background-attachment: fixed;
+  animation: fadeIn 1 1s;
+  
+  &.on-signup {
+    height: 135vh;
+  }
+
+  .auth-content {
+    position: relative;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    display: grid;
+    place-items: center;
+    gap: $spacing-2;
+
+    .auth-card {
+      position: relative;
+      background-color: white;
+      border-radius: 10px;
+      padding: $spacing-2;
+      box-shadow: 7px 9px 22px rgba(0, 0, 0, 0.09);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 6px;
+        background-color: $primary;
+        border-radius: 5px;
+      }
+
+      .card-header {
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .form-container {
+        width: 30rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+}

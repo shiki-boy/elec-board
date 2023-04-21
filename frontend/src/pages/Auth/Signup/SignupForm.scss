@@ -1,0 +1,22 @@
+@import '@/theme/variables.scss';
+
+body {
+  overflow-x: hidden;
+}
+
+.signup-form {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .checkbox-label {
+    margin-left: $spacing-2;
+    line-height: 1.5;
+
+    a {
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+}

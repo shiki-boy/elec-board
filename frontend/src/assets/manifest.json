@@ -1,0 +1,20 @@
+{
+  "short_name": "AMH",
+  "name": "Accessible Mental Health",
+  "icons": [
+    {
+      "src": "./images/favicon-32x32.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#00018A",
+  "background_color": "#ffffff"
+}

@@ -1,0 +1,236 @@
+@import './variables.scss';
+
+fieldset {
+  border: none;
+}
+
+label.form-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  margin-bottom: $spacing-1;
+  position: relative;
+  top: 4px;
+
+  & > span.error,
+  &.error > span {
+    color: $danger;
+  }
+
+  & > span {
+    font-size: inherit;
+    padding: 2px 0;
+  }
+
+  span.helper-text {
+    font-size: inherit;
+    opacity: 0.9;
+    padding: 1px 0;
+    height: 21px;
+  }
+
+  &.required {
+    & > span:first-child:after {
+      content: '*';
+      color: $danger;
+      font-weight: bold;
+    }
+  }
+
+  &:focus-within {
+    color: $secondary;
+  }
+
+  input.indent-text {
+    padding-left: $spacing-3;
+  }
+
+  svg.left-inline-icon {
+    position: absolute;
+    top: 2.7rem;
+    left: 1rem;
+
+    & ~ input {
+      padding-left: $spacing-3;
+    }
+  }
+
+  .input-field-container { // for adding a right inline icon
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+input,
+textarea {
+  border: 1.5px solid $grey-3;
+  border-radius: $border-radius;
+  padding: $spacing-1;
+  font-size: 16px;
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &:focus,
+  &:active,
+  &:focus-visible {
+    border-color: $primary;
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: $grey-1;
+    cursor: not-allowed;
+  }
+
+  &.error {
+    border-color: $danger;
+  }
+
+  &[type='password'] {
+    letter-spacing: 4px;
+
+    &::placeholder {
+      letter-spacing: normal;
+    }
+  }
+
+  ~ svg.right-inline-icon {
+    cursor: pointer;
+    margin-left: -30px;
+  }
+
+  &[type='checkbox']:not(.toggle) {
+    appearance: unset;
+    background: transparent;
+    border-bottom: 0;
+    display: inline-block;
+    height: 30px;
+    margin: 0;
+    position: relative;
+    width: 30px;
+    border-color: transparent;
+    appearance: none;
+
+    &::before {
+      border: solid 2px $grey-3;
+      border-radius: $border-radius;
+      content: '';
+      display: inline-block;
+      height: 30px;
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      width: 30px;
+    }
+
+    &:checked::before {
+      background: $primary url('@/assets/images/checkmark.svg') 2px no-repeat;
+      border-color: $primary;
+      background-position: center;
+    }
+
+    & ~ .checkmark.disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    & ~ .checkmark > span {
+      font-size: 16px;
+      margin-left: 20px;
+    }
+  }
+}
+
+.radio-btn-container {
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 12px;
+  padding-left: 50px;
+  position: relative;
+  user-select: none;
+  margin: $spacing-2 0;
+
+  /* Hide the browser's default radio button */
+  input {
+    cursor: pointer;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+  }
+
+  /* Create a custom radio button */
+  .checkmark {
+    background-color: $white;
+    border-radius: 50%;
+    height: 25px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    border: 1px solid $grey-3;
+
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  /* On mouse-over, add a grey background color */
+  &:hover input ~ .checkmark {
+    background-color: $grey-1;
+  }
+
+  /* When the radio button is checked, add a background */
+  input:checked ~ .checkmark {
+    background-color: $secondary;
+    border: none;
+  }
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: '';
+    display: none;
+    position: absolute;
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .checkmark:after {
+    background: white;
+    border-radius: 50%;
+    height: 13px;
+    left: 6px;
+    top: 6px;
+    width: 13px;
+  }
+}
+
+.react-datepicker-wrapper {
+  input {
+    width: inherit;
+  }
+}
+
+select:not(.react-datepicker select) {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
+  border: none;
+  background-color: $grey-2;
+
+  option {
+    font-size: 16px;
+  }
+}

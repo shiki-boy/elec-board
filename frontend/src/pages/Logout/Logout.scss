@@ -1,0 +1,14 @@
+@use '@/theme/variables.scss' as *;
+
+.logout-page {
+    text-align: center;
+    height: 100%;
+    display: grid;
+    place-items: center;
+
+    .buttons {
+        display: flex;
+        gap: $spacing-2;
+        justify-content: center;
+    }
+}

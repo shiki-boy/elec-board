@@ -1,0 +1,46 @@
+@import '@/theme/variables.scss';
+
+.table-grid {
+  margin-bottom: $spacing-3;
+
+  .table-headers,
+  .table-row {
+    display: grid;
+  }
+
+  .table-headers {
+    background-color: $grey-1;
+    padding: $spacing-1 $spacing-2;
+    margin: $spacing-1 0;
+    text-transform: uppercase;
+    border-radius: 10px 10px 0 0;
+    row-gap: $spacing-2;
+    
+    .th {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 15px;
+      letter-spacing: 1px;
+      text-align: left;
+      color: #5e5873;
+    }
+  }
+  
+  .table-body {
+    .table-row {
+      row-gap: $spacing-1;
+      background-color: white;
+      padding: 0 $spacing-2;
+      
+      .td {
+        padding: $spacing-1 0;
+        border-radius: 5px;
+        word-break: break-word;
+
+        & {
+          box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
+        }
+      }
+    }
+  }
+}

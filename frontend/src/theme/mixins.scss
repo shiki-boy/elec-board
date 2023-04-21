@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+@mixin boxShadow {
+  box-shadow: 0px 4px 20px rgba(144, 159, 191, 0.2);
+}
+
+@mixin popupShadow {
+  filter: drop-shadow(0px 0px 10px rgba(144, 159, 191, 0.3));
+}
+
+@mixin makeDividerFullWidth($offset) {
+  width: calc(100% + 4 * $offset);
+  margin-left: calc(-2 * $offset);
+  margin-top: 0;
+  margin-bottom: $offset;
+}

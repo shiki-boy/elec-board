@@ -1,0 +1,60 @@
+@import '../../theme/variables.scss', '../../theme/transitions.scss';
+
+.loader-container {
+  align-items: center;
+  background-color: $white;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  margin: $spacing-2 0;
+
+  &.full-page {
+    height: calc(100vh - 2 * $spacing-2);
+  }
+
+  // .loaderx {
+  //   border: 14px solid $grey-2;
+  //   border-radius: 50%;
+  //   border-top: 14px solid $primary;
+  //   border-bottom: 14px solid $secondary;
+  //   width: 100px;
+  //   height: 100px;
+  //   animation: spin 2s linear infinite;
+  // }
+
+  // @keyframes spin {
+  //   0% {
+  //     transform: rotate(0deg);
+  //   }
+  //   100% {
+  //     transform: rotate(360deg);
+  //   }
+  // }
+
+  .loader {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    border-width: 10px;
+    animation: spin 2s ease-in-out alternate infinite;
+    // background: $secondary;
+    border: 10px solid $primary;
+  }
+
+
+  @keyframes spin {
+    from {
+      border-radius: 5px;
+      transform: rotate(0deg);
+      background: $secondary;
+      border-color: $primary;
+    }
+    to {
+      background: $primary;
+      border-color: $secondary;
+      border-radius: 50%;
+      transform: rotate(720deg);
+    }
+  }
+}

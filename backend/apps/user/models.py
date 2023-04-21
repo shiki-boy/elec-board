@@ -43,6 +43,10 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    class GENDER_CHOICES(models.TextChoices):
+        MALE = 'M'
+        FEMALE = 'F'
+
     uid = models.UUIDField(unique=True, default=uuid4, editable=False)
     email = models.EmailField(verbose_name="Email", unique=True, max_length=128)
     first_name = models.CharField(
@@ -58,6 +62,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name="Registered at", auto_now_add=timezone.now
     )
     modified = models.DateTimeField(auto_now=True)
+    # gender = models.CharField(max_length=1, choices=GENDER_CHOICES.choices, blank=True)
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"
@@ -66,7 +71,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}".strip()
     
     @property
     def is_applicant(self):

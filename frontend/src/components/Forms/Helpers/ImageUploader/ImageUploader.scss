@@ -1,0 +1,33 @@
+@import '../../../../theme/variables.scss';
+
+.dropzone {
+  height: 200px;
+  border-radius: $border-radius;
+  border: 2px dashed $secondary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $secondary;
+  cursor: pointer;
+
+  &.loading {
+    cursor: progress;
+    animation: btnShimmer 3s infinite;
+    background: linear-gradient(to right, $grey-2 4%, $grey-1 25%, $grey-2 36%);
+    background-size: 1000px 100%;
+  }
+
+  &.file-loaded {
+    cursor: default;
+  }
+
+  span.clear-file {
+    cursor: pointer;
+    margin-left: $spacing-1;
+  }
+
+  p {
+    font-weight: 600;
+  }
+}

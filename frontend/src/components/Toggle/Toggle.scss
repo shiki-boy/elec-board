@@ -1,0 +1,50 @@
+@import '../../theme/variables.scss', '../../theme/transitions.scss';
+
+.toggle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: $spacing-2 0;
+
+  // toggle label text
+  span {
+    margin-right: $spacing-2;
+  }
+
+  .toggle {
+    display: none; // hide input
+
+    + .toggle-btn {
+      display: block;
+      width: 58px;
+      height: 25px;
+      cursor: pointer;
+      user-select: none;
+      background: $grey-2;
+      border-radius: 2em;
+      padding: 2px;
+      transition: all $transition-short ease;
+
+      // toggle circle
+      &::after {
+        position: relative;
+        display: block;
+        content: '';
+        width: 40%;
+        height: 100%;
+        left: 0;
+        border-radius: 50%;
+        background: $white;
+        transition: all $transition-shorter ease;
+      }
+    }
+
+    &:checked + .toggle-btn::after {
+      left: 60%;
+    }
+
+    &:checked + .toggle-btn {
+      background: $primary;
+    }
+  }
+}

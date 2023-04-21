@@ -1,0 +1,32 @@
+@import '../../theme/variables.scss', '../../theme/mixins.scss';
+
+.toast {
+  @include popupShadow;
+  background-color: $toast-default;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  right: 1rem;
+  padding: 1rem 2rem;
+  position: fixed;
+  bottom: 1rem;
+  width: max-content;
+  min-width: 200px;
+  z-index: $z-index-highest;
+  height: 50px;
+
+  &.success {
+    background-color: $toast-success;
+  }
+  &.error {
+    background-color: $toast-error;
+  }
+  &.info {
+    background-color: $toast-info;
+  }
+  &.warning {
+    background-color: $toast-warning;
+  }
+}

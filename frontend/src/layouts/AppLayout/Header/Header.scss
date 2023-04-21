@@ -1,0 +1,44 @@
+@import '@/theme/variables.scss';
+
+.header-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: $spacing-2;
+  margin-bottom: $spacing-2;
+  padding-right: $spacing-2;
+
+  .username {
+    text-align: end;
+    span {
+      opacity: 0.8;
+      font-size: 14px;
+    }
+  }
+
+  .notification {
+    position: relative;
+
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+
+    &.show::after {
+      content: attr(data-count);
+      border-radius: 10px;
+      background-color: #ea5455;
+      padding: 1px 6px;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-10%);
+      color: white;
+      font-weight: bold;
+    }
+    
+    &.big-count::after {
+      transform: translateX(-23%);
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import '@/theme/variables.scss';
+
+.login-form {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  button.tertiary {
+    margin: $spacing-1 !important;
+  }
+}

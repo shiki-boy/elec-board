@@ -1,0 +1,30 @@
+@import '@/theme/variables.scss';
+
+.avatar-container {
+  display: inline-block;
+  margin-right: $spacing-2;
+  padding: 10px 11px;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+
+  &.no-img {
+    background-color: powderblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+  }
+
+  .avatar-img {
+    border-radius: 50%;
+    vertical-align: middle;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}
