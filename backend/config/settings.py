@@ -115,6 +115,9 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "access",
     "JWT_AUTH_REFRESH_COOKIE": "refresh",
     "JWT_AUTH_HTTPONLY": False,
+    # "JWT_SERIALIZER": "apps.user.serializers.EbLoginSerializer",
+    "USER_DETAILS_SERIALIZER": "apps.user.serializers.UserDetailsSerializer",
+    "PASSWORD_CHANGE_SERIALIZER": "apps.user.serializers.EBPasswordChangeSerializer",
 }
 
 TEMPLATES = [
@@ -280,6 +283,7 @@ LOGGING = {
 }
 
 REST_AUTH_SERIALIZERS = {
+    "JWT_SERIALIZER": "apps.user.serializers.EbLoginSerializer",
     "USER_DETAILS_SERIALIZER": "apps.user.serializers.UserDetailsSerializer",
     "PASSWORD_CHANGE_SERIALIZER": "apps.user.serializers.EBPasswordChangeSerializer",
 }

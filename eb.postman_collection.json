@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "e73cca7d-1e28-41f6-a5ea-1f4e5bc493fd",
+		"name": "eb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6546877"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"u1@example.com\",\r\n    \"password\": \"123\",\r\n    \"first_name\": \"u\",\r\n    \"last_name\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/auth/register/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json()\r",
+							"pm.environment.set(\"access\", response.access_token);\r",
+							"pm.environment.set(\"refresh\", response.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"sudhanshu.gupta@example.com\",\r\n    \"password\": \"Test_1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/auth/login/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forgot password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"u1@example.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/auth/password/reset/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"password",
+						"reset",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Password reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"uid\":\"7\",\r\n\"token\":\"bmwhwt-153567f269afc5114ee4a083d7c3ba79\",\r\n\"new_password1\":\"Test_1234\",\r\n\"new_password2\":\"Test_1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/auth/password/reset/confirm/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"password",
+						"reset",
+						"confirm",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/auth/user-info/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"user-info",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk import",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/ragha/Downloads/seed - seed.csv.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/application/bulk-import/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"application",
+						"bulk-import",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List applications",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/application/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"application",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats month",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/application/stats?by=month&year=2022",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"application",
+						"stats"
+					],
+					"query": [
+						{
+							"key": "by",
+							"value": "month"
+						},
+						{
+							"key": "year",
+							"value": "2022"
+						},
+						{
+							"key": "status",
+							"value": "A",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status counts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/application/stats/status-counts?year=2021",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"application",
+						"stats",
+						"status-counts"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2021"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

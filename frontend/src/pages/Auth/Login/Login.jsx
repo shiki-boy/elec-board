@@ -11,7 +11,7 @@ const Login = ( { goToSuccessPage, goToSignUp, goToForgotPassword } ) => {
   const { setUserData } = useContext( AuthContext )
 
   const onSuccess = ( responseData ) => {
-    setUserData( { email: responseData.email } )
+    setUserData( responseData.user.info )
     goToSuccessPage()
   }
 

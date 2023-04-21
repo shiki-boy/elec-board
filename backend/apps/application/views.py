@@ -54,7 +54,6 @@ class ApplicationViewset(
     ordering = ["created", "modified"]
     search_fields = ["id_number"]
 
-
     def get_queryset(self):
         if self.request.user.is_admin:
             return super().get_queryset()

@@ -1,4 +1,4 @@
-from dj_rest_auth.serializers import PasswordChangeSerializer
+from dj_rest_auth.serializers import PasswordChangeSerializer, JWTSerializer
 
 from rest_framework import serializers
 
@@ -31,10 +31,17 @@ class RegisterSerializer(serializers.ModelSerializer):
         return super().save()
 
 
+class EbLoginSerializer(JWTSerializer):
+    info = serializers.SerializerMethodField()
+
+    def get_info(self, obj):
+        return obj['user'].info
+
 class UserDetailsSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        fields = ('uid', 'email', 'first_name', 'last_name')
+        fields = ('info', )
         read_only_fields = ('email',)
 
 

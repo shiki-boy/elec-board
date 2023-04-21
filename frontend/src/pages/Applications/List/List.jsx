@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { format, parse } from 'date-fns'
+import ReactDatePicker from 'react-datepicker'
 
 import './List.scss'
 
@@ -10,15 +12,16 @@ import dateFormatter from '@/utils/dateFormatter'
 import statusChoices, { statusChoicesList } from '@/utils/statusChoices'
 
 import routes from '../routes'
-import ReactDatePicker from 'react-datepicker'
 import FormLabel from '@/components/Forms/Helpers/FormLabel/FormLabel'
-import { format, parse } from 'date-fns'
 import Select from '@/components/Forms/Helpers/Select/Select'
+import { debounce } from 'lodash'
 
 const List = () => {
   const navigate = useNavigate()
 
   const [ filters, setFilters ] = useState( {} )
+  const [ searchFilter, setSearchFilter ] = useState( '' )
+  const searchId = useRef( '' )
 
   const _createdDateFrom = filters?.created__gte ?? null
   const _createdDateTo = filters?.created__lte ?? null
@@ -85,6 +88,16 @@ const List = () => {
     } ) )
   }
 
+  const handleSearch = ( val ) => {
+    searchId.current = val
+    debounceFn( val )
+  }
+
+  const handleDebounceFn = ( val ) => {
+    setSearchFilter( val )
+  }
+  const debounceFn = useCallback( debounce( handleDebounceFn, 500 ), [] )
+
   return (
     <div className='applications-list-page'>
       <h5>Filter by:</h5>
@@ -149,9 +162,18 @@ const List = () => {
             dateFormat='yyyy-MM-dd'
           />
         </FormLabel>
+
+        <FormLabel name='search' field='Search ID Number' required>
+          <input
+            type='search'
+            onChange={ ( e ) => handleSearch( e.target.value ) }
+            placeholder='Search'
+          />
+        </FormLabel>
       </div>
 
-      <h5>Connection Applications:
+      <h5>
+        Connection Applications:
         <br />
         <span className='subtext'>*Double click to view application</span>
       </h5>
@@ -162,7 +184,10 @@ const List = () => {
         overflowTable
         onDoubleClickRow={ viewRow }
         defaultSorting='-modified'
-        filters={ filters }
+        filters={ {
+          ...filters,
+          search: searchFilter,
+        } }
       />
     </div>
   )

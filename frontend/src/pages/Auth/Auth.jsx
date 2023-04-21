@@ -54,7 +54,7 @@ const Auth = ( { defaultPage } ) => {
       return (
         <Login
           goToForgotPassword={ () => navigate( '/forgot-password' ) }
-          goToSuccessPage={ () => navigate( '/mfa' ) }
+          goToSuccessPage={ () => navigate( '/dashboard' ) }
           goToSignUp={ () => navigate( '/signup' ) }
         />
       )
