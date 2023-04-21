@@ -40,7 +40,11 @@ class ApplicationViewset(
 ):
     permission_classes = [permissions.IsAuthenticated, IsReviewer]
     serializer_class = ApplicationSerializer
-    # filter_fields = {}
+    filterset_fields = {
+        'status': ['exact', 'in'],
+        'category': ['exact'],
+        'created': ['gte', 'lte'],
+    }
     queryset = Application.objects.all().order_by("-modified")
     lookup_field = "uid"
     lookup_url_kwarg = "uid"

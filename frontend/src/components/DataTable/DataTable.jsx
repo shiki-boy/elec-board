@@ -5,17 +5,19 @@ import classNames from 'classnames'
 
 import './DataTable.scss'
 
-import useApi from '../../hooks/useApi'
+import useApi from '@/hooks/useApi'
+import { ArrowUpIcon as SortIcon } from '@/assets/icons'
+import { PAGE_LIMIT } from '@/utils/constants'
+import Icon from '@/components/Icon'
 
 import Checkbox from '../Checkbox'
 import TableLoading from './TableLoading'
 import TablePagination from './TablePagination'
-import { PAGE_LIMIT } from '@/utils/constants'
 
 const DataTable = ( {
   columns,
   endpoint = '/',
-  // defaultSorting = '',
+  defaultSorting = '',
   filters = {},
   rows, // for testing, will be removed when the backend APIs are connected
   withCheckboxes = false,
@@ -25,8 +27,9 @@ const DataTable = ( {
   formatRows = ( row ) => row,
   errorMessage = 'An error occurred',
   onDoubleClickRow = ( row ) => row,
+  externalHandleSort = null, // if you want to handle sort from outside
 } ) => {
-  // const [ sorting, setSorting ] = useState( defaultSorting )
+  const [ sorting, setSorting ] = useState( defaultSorting )
   const [ page, setPage ] = useState( 1 )
 
   const { data, isSuccess, isError, isLoading, isFetching } = useApi(
@@ -36,6 +39,7 @@ const DataTable = ( {
       ...filters,
       limit: PAGE_LIMIT,
       page,
+      ordering: sorting,
     },
     {
       enabled: '/' !== endpoint,
@@ -64,6 +68,31 @@ const DataTable = ( {
     if ( '/' === endpoint ) return rows?.results ?? rows
 
     return formatRows( isSuccess ? data?.results : [] )
+  }
+
+  const isDescending = ( key ) => {
+    const _sorting = externalHandleSort ? defaultSorting : sorting
+
+    return _sorting === `-${ key }`
+  }
+  const showSortIcon = ( key ) => {
+
+    const _sorting = externalHandleSort ? defaultSorting : sorting
+
+    return !!_sorting && ( _sorting === key || `-${ key }` === _sorting )
+  }
+
+  const handleSorting = ( { key, sortKey, isSortable } ) => {
+    if ( !isSortable ) {
+      return
+    }
+
+    if ( externalHandleSort )
+      return externalHandleSort( key )
+
+    const _key = sortKey ?? key
+
+    setSorting( ( old ) => ( old === _key ? `-${ _key }` : _key ) )
   }
 
   return (
@@ -103,19 +132,22 @@ const DataTable = ( {
               </th>
             )}
 
-            {columns.map( ( { title, key }, index ) => (
-              <th key={ key + index }>
+            {columns.map( ( { title, key, sortKey = null, isSortable = false }, index ) => (
+              <th key={ key + index } onClick={ () => handleSorting( {
+                key,
+                sortKey,
+                isSortable,
+              } ) }>
                 {title ?? makeTitle( key )}
-                {/* <Icon
+                <Icon
                   IconComponent={ SortIcon }
                   className={ classNames( {
-                    desc: sorting === `-${ key }`,
+                    desc: isDescending( sortKey ?? key ),
                     primary: true,
-                    show:
-                      !!sorting && ( sorting === key || `-${ key }` === sorting ),
+                    show: showSortIcon( sortKey ?? key ),
                     md: true,
                   } ) }
-                /> */}
+                />
               </th>
             ) )}
 
