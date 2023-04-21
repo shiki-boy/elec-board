@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   LineChart,
   Line,
@@ -14,9 +14,13 @@ import './Dashboard.scss'
 
 import useApi from '@/hooks/useApi/useApi'
 import FormLabel from '@/components/Forms/Helpers/FormLabel'
+import AuthContext from '@/context/AuthContext'
+
 import StatusCounts from './StatusCounts'
 
 const Dashboard = () => {
+  const { userData } = useContext( AuthContext )
+
   const [ year, setYear ] = useState( new Date() )
 
   const { data, isLoading } = useApi( 'getList', '/api/application/stats', {
@@ -33,9 +37,13 @@ const Dashboard = () => {
       <h5>
         Applications created in the year: {year.getFullYear()}
         <br />
-        <span className='subtext'>
+        {
+          userData.is_reviewer && (
+            <span className='subtext'>
           *The counts shown are only from applications assgined to you
-        </span>
+            </span>
+          )
+        }
       </h5>
 
       <div className='filters'>
@@ -76,7 +84,6 @@ const Dashboard = () => {
       </div>
 
       <hr className='divider' />
-
       <StatusCounts />
     </div>
   )

@@ -75,11 +75,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     @property
     def is_applicant(self):
-        return self.groups.first().name == settings.APPLICANT_USER_GROUP
+        return bool(self.groups.count()) and self.groups.first().name == settings.APPLICANT_USER_GROUP
 
     @property
     def is_reviewer(self):
-        return self.groups.first().name == settings.REVIEWER_USER_GROUP
+        return bool(self.groups.count()) and self.groups.first().name == settings.REVIEWER_USER_GROUP
+
+    @property
+    def is_admin(self):
+        return self.is_superuser
 
     @property
     def info(self):
@@ -92,6 +96,9 @@ class User(AbstractBaseUser, PermissionsMixin):
             "phone_number": self.phone_number
             and getattr(self.phone_number, "raw_input", ""),
             "registered_at": self.registered_at,
+            'is_reviewer': self.is_reviewer,
+            'is_admin': self.is_admin,
+            'is_applicant': self.is_applicant,
         }
 
     def __str__(self):

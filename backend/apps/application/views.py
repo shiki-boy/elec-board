@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models.aggregates import Count
 
-from apps.util.permissions import IsReviewer
+from apps.util.permissions import IsReviewerOrAbove
 from apps.user.models import Applicant, Reviewer
 
 from .models import Application
@@ -39,7 +39,7 @@ class ApplicationViewset(
     mixins.UpdateModelMixin,
     viewsets.GenericViewSet,
 ):
-    permission_classes = [permissions.IsAuthenticated, IsReviewer]
+    permission_classes = [permissions.IsAuthenticated, IsReviewerOrAbove]
     serializer_class = ApplicationSerializer
     filterset_fields = {
         'status': ['exact', 'in'],
@@ -54,7 +54,10 @@ class ApplicationViewset(
     ordering = ["created", "modified"]
     search_fields = ["id_number"]
 
+
     def get_queryset(self):
+        if self.request.user.is_admin:
+            return super().get_queryset()
         return super().get_queryset().filter(reviewer=self.request.user)
 
     @action(detail=False, methods=["GET"], url_path="stats", url_name="stats")

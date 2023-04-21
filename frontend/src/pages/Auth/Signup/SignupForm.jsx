@@ -5,9 +5,10 @@ import './SignupForm.scss'
 
 import Button from '@/components/Button'
 import FormLabel from '@/components/Forms/Helpers/FormLabel'
+import Password from '@/components/Password/Password'
 
 const SignupForm = ( { isLoading, goToLogin } ) => {
-  const { register, formState } = useFormContext()
+  const { register, formState, getValues } = useFormContext()
 
   return (
     <div className='signup-form'>
@@ -43,6 +44,24 @@ const SignupForm = ( { isLoading, goToLogin } ) => {
           />
         </div>
       </FormLabel>
+
+      <Password
+        placeholder='Password'
+        field='Password'
+        { ...register( 'password', { required: 'This field is required' } ) }
+      />
+
+      <Password
+        placeholder='Confirm Password'
+        field='Confirm Password'
+        { ...register( 'password2', {
+          required: 'This field is required',
+          validate: {
+            same: ( val ) =>
+              val === getValues( 'password' ) || "Passwords doesn't match",
+          },
+        } ) }
+      />
 
       <Button
         title='Sign Up'

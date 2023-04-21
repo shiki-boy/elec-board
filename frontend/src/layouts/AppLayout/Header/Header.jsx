@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <div className='header-container'>
-      <div className='username'>
+      <div className='username' data-name={ userData?.full_name[0] }>
         {userData?.full_name}
         <br />
       </div>

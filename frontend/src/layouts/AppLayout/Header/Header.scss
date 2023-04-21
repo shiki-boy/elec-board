@@ -10,35 +10,27 @@
 
   .username {
     text-align: end;
+    position: relative;
+
     span {
       opacity: 0.8;
       font-size: 14px;
     }
-  }
 
-  .notification {
-    position: relative;
-
-    svg {
-      height: 24px;
-      width: 24px;
-    }
-
-    &.show::after {
-      content: attr(data-count);
-      border-radius: 10px;
-      background-color: #ea5455;
-      padding: 1px 6px;
+    &::before {
+      content: attr(data-name);
       position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-10%);
+      left: -40px;
+      border-radius: 50%;
+      background-color: purple;
       color: white;
+      width: 30px;
+      height: 30px;
+      top: -3px;
+      display: grid;
+      place-items: center;
+      text-transform: uppercase;
       font-weight: bold;
-    }
-    
-    &.big-count::after {
-      transform: translateX(-23%);
     }
   }
 }
