@@ -94,7 +94,7 @@ class ApplicationViewset(
         detail=False, methods=["POST"], url_path="bulk-import", url_name="bulk-import"
     )
     def bulk_import(self, request, *args, **kwargs):
-        # TODO: celery task
+        # TODO: make this a celery task
         file = request.FILES["file"]
         data_frame = read_csv(file)
 
