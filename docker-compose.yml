@@ -20,23 +20,21 @@ services:
     networks:
       - eb-net
 
-  # celery:
-  #   build:
-  #     context: ./backend
-  #     dockerfile: CeleryDockerfile
-  #   depends_on:
-  #     - postgres
-  #     - redis
-  #   volumes:
-  #     - ./backend:/app
-  #   command: /celery_start.sh
-  #   entrypoint: /entrypoint.sh
-  #   user: nobody
-  #   env_file: .env
-  #   restart: on-failure
-  #   networks:
-  #     - eb-net
-    
+  celery:
+    build:
+      dockerfile: CeleryDockerfile
+      context: ./backend
+    command: celery -A config worker -c 4 -l DEBUG
+    user: nobody
+    volumes:
+      - './backend:/app'
+    depends_on:
+      - postgres
+      - redis
+    env_file: .env
+    networks:
+      - eb-net
+
   frontend:
     build:
       context: .

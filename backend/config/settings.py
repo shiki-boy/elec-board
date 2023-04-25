@@ -288,9 +288,8 @@ REST_AUTH_SERIALIZERS = {
     "PASSWORD_CHANGE_SERIALIZER": "apps.user.serializers.EBPasswordChangeSerializer",
 }
 
-REDIS_HOST = env.str("REDIS_HOST", default="redis")
-REDIS_PORT = env.int("REDIS_PORT", default=6379)
-REDIS_DB_NUMBER = env.int("REDIS_DB_NUMBER", default=0)
-
-CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}"
-CELERY_RESULT_BACKEND = "django-db"
+CELERY_BROKER_URL=env.str("CELERY_BROKER_URL", '')
+CELERY_RESULT_BACKEND=env.str("CELERY_RESULT_BACKEND", '')
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

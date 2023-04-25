@@ -13,9 +13,5 @@ ENV PYTHONFAULTHANDLER=1 \
 COPY ./requirements.txt /
 RUN pip3 install -r ./requirements.txt
 
-# upload scripts
-COPY ./scripts/entrypoint.sh ./scripts/celery_start.sh ./scripts/celery_flower_start.sh /
-
-RUN chmod +x /*.sh
-
-WORKDIR /app
+COPY . /app/
+WORKDIR /app/
