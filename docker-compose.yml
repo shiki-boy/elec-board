@@ -2,7 +2,7 @@ version: '3.3'
 
 volumes:
   postgres_data: {}
-  rfs_data: {}
+  eb_data: {}
 
 services:
   postgres:
