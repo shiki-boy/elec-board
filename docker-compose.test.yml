@@ -1,0 +1,35 @@
+version: '3.3'
+
+volumes:
+  postgres_data: {}
+  eb_data: {}
+
+services:
+  postgres:
+    image: 'postgres:14-alpine'
+    volumes:
+      - './volumes/postgres:/var/lib/postgresql/data'
+    env_file: .env
+    networks:
+      - eb-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - '8000:8000'
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    command: /start.sh
+    entrypoint: /entrypoint.sh
+    restart: on-failure
+    env_file: .env
+    networks:
+      - eb-net
+
+networks:
+  eb-net:
+    driver: bridge

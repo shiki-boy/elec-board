@@ -56,7 +56,7 @@ services:
     depends_on:
       - redis
       - postgres
-      # - frontend
+      - frontend
     volumes:
       - .:/app
     command: /start.sh
