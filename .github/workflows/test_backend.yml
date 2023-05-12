@@ -3,21 +3,24 @@ name: Django CI
 on:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         python-version: [3.9]
+
     env:
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: mysecretpass
       POSTGRES_USER: postgresuser
       POSTGRES_HOST: postgres
+
     services:
       postgres_main:
         image: postgres:14
@@ -33,16 +36,15 @@ jobs:
           --health-timeout 5s 
           --health-retries 5
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: dependencies setup
-    - run: pip install docker-compose
-    - run: pip install --upgrade pip
-    - run: cp .env.template .env
-    - run: docker-compose up --build -d
-    - run: docker-compose ps
-    - run: docker-compose exec -T backend bash -c "python manage.py test"
-    - run: docker-compose down
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install docker-compose
+      - run: pip install --upgrade pip
+      - run: cp .env.template .env
+      - run: docker-compose up --build -d
+      - run: docker-compose ps
+      - run: docker-compose exec -T backend bash -c "python manage.py test"
+      - run: docker-compose down
