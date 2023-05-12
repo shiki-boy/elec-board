@@ -44,7 +44,7 @@ jobs:
       - run: pip install docker-compose
       - run: pip install --upgrade pip
       - run: cp .env.template .env
-      - run: docker-compose up backend --build -d
+      - run: docker-compose up --build backend -d
       - run: docker-compose ps
       - run: docker-compose exec -T backend bash -c "python manage.py test"
       - run: docker-compose down
